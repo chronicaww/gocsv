@@ -31,3 +31,17 @@ func Read(filename string) (records [][]string, e error) {
 	}
 	return recordsCleared, nil
 }
+
+func Write(filename string, records [][]string) (e error) {
+	file, e := os.Open(filename)
+	if e != nil {
+		return e
+	}
+	defer file.Close()
+	writer := csv.NewWriter(file)
+	e = writer.WriteAll(records)
+	if e != nil {
+		return e
+	}
+	return nil
+}
