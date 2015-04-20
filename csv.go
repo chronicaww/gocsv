@@ -33,11 +33,13 @@ func Read(filename string) (records [][]string, e error) {
 }
 
 func Write(filename string, records [][]string) (e error) {
-	file, e := os.Open(filename)
+	file, e := os.OpenFile(filename, os.O_APPEND|os.O_CREATE, os.ModeAppend)
 	if e != nil {
 		return e
 	}
+
 	defer file.Close()
+
 	writer := csv.NewWriter(file)
 	e = writer.WriteAll(records)
 	if e != nil {
