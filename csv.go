@@ -33,7 +33,7 @@ func Read(filename string) (records [][]string, e error) {
 }
 
 func Write(filename string, records [][]string) (e error) {
-	file, e := os.OpenFile(filename, os.O_APPEND|os.O_CREATE, os.ModeAppend)
+	file, e := os.OpenFile(filename, os.O_APPEND|os.O_CREATE, 0777)
 	if e != nil {
 		return e
 	}
@@ -45,7 +45,7 @@ func Write(filename string, records [][]string) (e error) {
 	for _, v := range records {
 		// e = writer.Write(v)
 
-		_, e = file.Write([]byte(addStrings(v)))
+		_, e = file.WriteString(addStrings(v))
 		if e != nil {
 			return e
 		}
