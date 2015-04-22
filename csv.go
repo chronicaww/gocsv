@@ -45,7 +45,7 @@ func Write(filename string, records [][]string) (e error) {
 	for _, v := range records {
 		// e = writer.Write(v)
 
-		_, e = file.WriteString(addStrings(v))
+		_, e = file.Write([]byte(addStrings(v)))
 		if e != nil {
 			return e
 		}
