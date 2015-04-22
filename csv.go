@@ -43,7 +43,7 @@ func Write(filename string, records [][]string) (e error) {
 	writer := csv.NewWriter(file)
 
 	for _, v := range records {
-		e = writer.Write(addStrings(v))
+		e = writer.Write(v)
 		if e != nil {
 			return e
 		}
