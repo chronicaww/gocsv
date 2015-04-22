@@ -48,11 +48,3 @@ func Write(filename string, records [][]string) (e error) {
 
 	return nil
 }
-
-func addStrings(s []string) string {
-	result := ""
-	for _, v := range s {
-		result += v + ","
-	}
-	return result
-}
