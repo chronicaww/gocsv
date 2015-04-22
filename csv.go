@@ -41,9 +41,21 @@ func Write(filename string, records [][]string) (e error) {
 	defer file.Close()
 
 	writer := csv.NewWriter(file)
-	e = writer.WriteAll(records)
-	if e != nil {
-		return e
+
+	for _, v := range records {
+		e = writer.Write(addStrings(v))
+		if e != nil {
+			return e
+		}
 	}
+
 	return nil
+}
+
+func addStrings(s []string) string {
+	result := ""
+	for _, v := range s {
+		result += v + ","
+	}
+	return result
 }
