@@ -33,7 +33,7 @@ func Read(filename string) (records [][]string, e error) {
 }
 
 func Write(filename string, records [][]string) (e error) {
-	file, e := os.OpenFile(filename, os.O_APPEND|os.O_CREATE, 0777)
+	file, e := os.OpenFile(filename, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0777)
 	if e != nil {
 		return e
 	}
