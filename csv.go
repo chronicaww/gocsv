@@ -40,10 +40,12 @@ func Write(filename string, records [][]string) (e error) {
 
 	defer file.Close()
 
-	writer := csv.NewWriter(file)
+	// writer := csv.NewWriter(file)
 
 	for _, v := range records {
-		e = writer.Write(v)
+		// e = writer.Write(v)
+
+		_, e = file.WriteString(addStrings(s))
 		if e != nil {
 			return e
 		}
