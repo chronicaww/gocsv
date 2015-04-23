@@ -50,7 +50,11 @@ func Write(filename string, records [][]string) (e error) {
 }
 
 func reWrite(filename string, records [][]string) (e error) {
-	file, e := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE, 0777)
+	e = os.Remove(name)
+	of e!=nil{
+		return e
+	}
+	file, e := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0777)
 	if e != nil {
 		return e
 	}
@@ -67,11 +71,6 @@ func reWrite(filename string, records [][]string) (e error) {
 }
 
 func DelRecord(filename string, records [][]string) error { //注释某行
-	file, e := os.OpenFile(filename, os.O_RDWR, 0777)
-	if e != nil {
-		return e
-	}
-	defer file.Close()
 
 	recOld, e := Read(filename)
 	if e != nil {
