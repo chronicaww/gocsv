@@ -93,7 +93,11 @@ func DelRecord(filename string, records [][]string) error { //注释某行
 			break
 		}
 	}
-	e = reWrite(filename, recOld[:j])
+	result := [][]string{}
+	if j >= 0 {
+		result = recOld[:j+1]
+	}
+	e = reWrite(filename, result)
 	if e != nil {
 		return e
 	}
