@@ -51,7 +51,7 @@ func Write(filename string, records [][]string) (e error) {
 
 func reWrite(filename string, records [][]string) (e error) {
 	e = os.Remove(name)
-	of e!=nil{
+	if e != nil {
 		return e
 	}
 	file, e := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0777)
