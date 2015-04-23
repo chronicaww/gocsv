@@ -50,7 +50,7 @@ func Write(filename string, records [][]string) (e error) {
 }
 
 func reWrite(filename string, records [][]string) (e error) {
-	e = os.Remove(name)
+	e = os.Remove(filename)
 	if e != nil {
 		return e
 	}
