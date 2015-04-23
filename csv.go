@@ -1,8 +1,8 @@
 package csv
 
 import (
-	"bufio"
 	"encoding/csv"
+	"os"
 )
 
 // 读取.csv文件，舍弃空行，舍弃id为空的行(包含舍弃由",,,,"构成的空行，)。
