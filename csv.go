@@ -5,6 +5,27 @@ import (
 	"os"
 )
 
+func ReadTitle(filename string, titleFlag string) ([]string, error) {
+	file, e := os.Open(filename)
+	if e != nil {
+		return []string{}, e
+	}
+	defer file.Close()
+	reader := csv.NewReader(file)
+	reader.TrimLeadingSpace = true
+	for {
+		record, e := reader.Read()
+		if e != nil {
+			break
+		}
+		if len(record[0]) > 2 && record[0][:2] == "#!" {
+			record[0] = record[0][2:]
+			return record, nil
+		}
+	}
+	return []string{}, errors.New("nofound")
+}
+
 // 读取.csv文件，舍弃空行，舍弃id为空的行(包含舍弃由",,,,"构成的空行，)。
 func Read(filename string) (records [][]string, e error) {
 	file, e := os.Open(filename)
